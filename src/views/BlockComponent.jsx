@@ -48,7 +48,7 @@ const BlockComponent = ({ block, controller, onComment, comment, isSelected, onS
         borderLeft: `4px solid ${block.borderColor}`
       }}
     >
-      // Header
+      {/* Header */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           {getIcon(block.icon)}
@@ -66,7 +66,7 @@ const BlockComponent = ({ block, controller, onComment, comment, isSelected, onS
         </button>
       </div>
 
-      // Components List 
+      {/* Components List */}
       <div className="space-y-2">
         {block.components.map((comp, idx) => (
           <div key={idx} className="flex items-center gap-2 text-sm">
@@ -121,7 +121,7 @@ const BlockComponent = ({ block, controller, onComment, comment, isSelected, onS
         ))}
       </div>
 
-      // Add Component Input
+      {/* Add Component Input */}
       <div className="mt-3 flex gap-2">
         <input
           value={newComponent}
@@ -145,7 +145,7 @@ const BlockComponent = ({ block, controller, onComment, comment, isSelected, onS
         </button>
       </div>
 
-      // Comment Display
+      {/* Comment Display */}
       {comment && (
         <div className="mt-3 p-2 bg-yellow-100 rounded text-xs">
           <strong>Note:</strong> {comment}

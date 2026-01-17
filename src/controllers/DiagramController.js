@@ -1,3 +1,5 @@
+import { DiagramAPIService } from '../services/DiagramAPIService.js';
+
 export class DiagramController {
   constructor(model, updateCallback) {
     this.model = model;

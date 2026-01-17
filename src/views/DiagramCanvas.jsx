@@ -9,11 +9,19 @@ const DiagramCanvas = ({
   onSelectBlock, 
   onCommentClick 
 }) => {
+  if (!model) return null;
+
   return (
     <div className="bg-white rounded-lg shadow-md p-6 overflow-auto">
-      <div className="relative" style={{ width: '1100px', height: '500px' }}>
-        // SVG Layer for Connections 
-        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+      {/* Canvas Container - MUST be relative positioned */}
+      <div className="relative bg-gray-50 border-2 border-gray-200 rounded" 
+           style={{ width: '1100px', height: '500px' }}>
+        
+        {/* SVG Layer for Connections - MUST be absolute */}
+        <svg 
+          className="absolute top-0 left-0 w-full h-full pointer-events-none"
+          style={{ zIndex: 1 }}
+        >
           <defs>
             <marker
               id="arrowhead"
@@ -27,7 +35,7 @@ const DiagramCanvas = ({
             </marker>
           </defs>
           
-          // Render all connections
+          {/* Render all connections */}
           {model.connections.map((conn, idx) => (
             <ConnectionLine
               key={idx}
@@ -39,18 +47,20 @@ const DiagramCanvas = ({
           ))}
         </svg>
 
-        // Blocks Layer
-        {model.blocks.map((block) => (
-          <BlockComponent
-            key={block.id}
-            block={block}
-            controller={controller}
-            onComment={onCommentClick}
-            comment={model.comments[block.id]}
-            isSelected={selectedBlock === block.id}
-            onSelect={onSelectBlock}
-          />
-        ))}
+        {/* Blocks Layer - MUST be absolute positioned */}
+        <div className="relative w-full h-full" style={{ zIndex: 2 }}>
+          {model.blocks.map((block) => (
+            <BlockComponent
+              key={block.id}
+              block={block}
+              controller={controller}
+              onComment={onCommentClick}
+              comment={model.comments[block.id]}
+              isSelected={selectedBlock === block.id}
+              onSelect={onSelectBlock}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

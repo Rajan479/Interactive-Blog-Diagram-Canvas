@@ -1,12 +1,9 @@
-// src/App.js
-
 import React, { useState } from 'react';
 import { Download } from 'lucide-react';
 import { DiagramModel } from './models/DiagramModel';
 import { DiagramController } from './controllers/DiagramController';
 import { ComponentCategorizationService } from './services/ComponentCategorizationService';
 import DiagramCanvas from './views/DiagramCanvas';
-import './App.css';
 
 function App() {
   const [prompt, setPrompt] = useState('');
