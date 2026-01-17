@@ -69,6 +69,31 @@ export class DiagramController {
     return name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
   }
 
+  // Add to DiagramController.js
+
+async saveDiagram() {
+  try {
+    const data = this.model.toJSON();
+    const result = await DiagramAPIService.saveDiagram(data);
+    console.log('Diagram saved:', result);
+    return result;
+  } catch (error) {
+    console.error('Save failed:', error);
+    throw error;
+  }
+}
+
+async loadDiagram(id) {
+  try {
+    const data = await DiagramAPIService.getDiagram(id);
+    // Reconstruct model from loaded data
+    // Update view
+  } catch (error) {
+    console.error('Load failed:', error);
+    throw error;
+  }
+}
+
   getModel() {
     return this.model;
   }
